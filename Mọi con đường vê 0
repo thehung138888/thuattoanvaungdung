@@ -1,0 +1,47 @@
+
+from queue import LifoQueue
+def Search(n, S):
+S.put(n)
+res = {n}
+while S.qsize()>0:
+u = S.get()
+m = int(u**0.5)
+for a in range(1, m+1):
+if u%a==0:
+v = (a-1)*(u//a+1)
+if v not in res:
+S.put(v)
+res.add(v)
+return res
+
+if name == 'main':
+n = int(input())
+S = LifoQueue()
+//Thuật toán của đoạn code trên là một thuật toán tìm kiếm để tạo ra một tập hợp các số dựa trên một số nguyên đầu vào n. Dưới đây là mô tả thuật toán:
+
+Khởi tạo một LIFO queue (queue theo nguyên tắc "Lần vào trước - Lần ra trước") và đặt số n vào queue đó.
+Khởi tạo một tập hợp res chứa số n.
+Lặp lại cho đến khi queue không còn phần tử nào:
+a. Lấy một phần tử u từ queue.
+b. Tính giá trị m là căn bậc hai của u.
+c. Duyệt qua các số từ 1 đến m (bao gồm cả m):
+Nếu u chia hết cho a (tức là u modulo a bằng 0), thực hiện các bước sau:
+Tính giá trị v bằng cách nhân (a-1) với phần nguyên của u/a cộng 1.
+Nếu v chưa có trong tập hợp res, đặt v vào queue và thêm v vào tập hợp res.
+Trả về tập hợp res.
+Ví dụ:
+Nếu đầu vào là n = 20, sau đó quá trình tìm kiếm sẽ được thực hiện như sau:
+
+Bước 1: Khởi tạo queue S và tập hợp res với số 20.
+Bước 2: Lấy số 20 từ queue.
+Bước 3: Tính m = int(20**0.5) = 4.
+Bước 4: Duyệt qua các số từ 1 đến 4:
+Số 1 chia hết cho 20, nên tính v = (1-1)*(20//1+1) = 0.
+0 chưa có trong tập hợp res, nên đặt 0 vào queue và thêm 0 vào tập hợp res.
+Số 2 không chia hết cho 20.
+Số 3 không chia hết cho 20.
+Số 4 chia hết cho 20, nên tính v = (4-1)*(20//4+1) = 15.
+15 chưa có trong tập hợp res, nên đặt 15 vào queue và thêm 15 vào tập hợp res.
+Bước 5: Queue không còn phần tử nào, kết thúc quá trình tìm kiếm.
+Kết quả là tập hợp res = {20, 0, 15}.
+Do đó, khi chạy đoạn code với đầu vào n = 20, kết quả sẽ là 20 0 15.
