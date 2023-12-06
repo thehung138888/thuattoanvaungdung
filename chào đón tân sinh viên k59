@@ -1,0 +1,82 @@
+import queue
+
+if __name__ == '__main__':
+    n = int(input())
+    a = list(map(int, input().split()))
+    L = [0] * n
+    SL = queue.LifoQueue()
+    SL.put((-1, 2e9))
+    for i in range(n):
+        while SL.queue[-1][1] <= a[i]: SL.get()
+        L[i] = SL.queue[-1][0]
+        SL.put((i, a[i]))
+
+    R = [0] * n
+    SR = queue.LifoQueue()
+    SR.put((-1, 2e9))
+    for i in range(n - 1, -1, -1):
+        while SR.queue[-1][1] <= a[i]: SR.get()
+        R[i] = SR.queue[-1][0]
+        SR.put((i, a[i]))
+    for i in range(n):
+        if L[i] == -1 or R[i] == -1:
+            print(1 + L[i] + R[i], end=" ")
+        else:
+            print(L[i] if i - L[i] <= R[i] - i else R[i], end=" ")
+
+
+
+
+Đoạn mã trên triển khai một thuật toán để tìm vị trí gần nhất của các phần tử trong một mảng. Dưới đây là mô tả chi tiết của thuật toán:
+
+Đọc một số nguyên từ input và gán cho biến n, đại diện cho độ dài của mảng.
+
+Đọc một dãy số nguyên từ input và gán cho mảng a.
+
+Khởi tạo một mảng L có độ dài n và tất cả các phần tử ban đầu bằng 0.
+
+Khởi tạo một hàng đợi LifoQueue (hàng đợi ngăn xếp) SL. Đặt một cặp giá trị (-1, 2e9) vào hàng đợi để đại diện cho một phần tử không tồn tại với giá trị vô cùng lớn.
+
+Lặp qua mảng a và thực hiện các bước sau:
+a. Trong khi giá trị của phần tử cuối cùng trong hàng đợi SL nhỏ hơn hoặc bằng giá trị của phần tử hiện tại a[i], lấy phần tử cuối cùng ra khỏi hàng đợi. Điều này đảm bảo rằng các phần tử trong hàng đợi SL được giữ theo thứ tự giảm dần của giá trị.
+b. Gán giá trị SL.queue[-1][0] cho L[i]. Đây là vị trí gần nhất của phần tử a[i] bên trái.
+c. Đặt cặp giá trị (i, a[i]) vào hàng đợi SL.
+
+Khởi tạo một mảng R có độ dài n và tất cả các phần tử ban đầu bằng 0.
+
+Khởi tạo một hàng đợi LifoQueue SR. Đặt một cặp giá trị (-1, 2e9) vào hàng đợi.
+
+Lặp qua mảng a từ phải sang trái và thực hiện các bước sau:
+a. Trong khi giá trị của phần tử cuối cùng trong hàng đợi SR nhỏ hơn hoặc bằng giá trị của phần tử hiện tại a[i], lấy phần tử cuối cùng ra khỏi hàng đợi. Điều này đảm bảo rằng các phần tử trong hàng đợi SR được giữ theo thứ tự giảm dần của giá trị.
+b. Gán giá trị SR.queue[-1][0] cho R[i]. Đây là vị trí gần nhất của phần tử a[i] bên phải.
+c. Đặt cặp giá trị (i, a[i]) vào hàng đợi SR.
+
+Lặp qua mảng L và R và thực hiện các bước sau:
+a. Nếu L[i] hoặc R[i] bằng -1, có nghĩa là không tồn tại vị trí gần nhất của phần tử a[i] ở cả hai bên. In ra 1 + L[i] + R[i] để đại diện cho vị trí không tồn tại.
+b. Ngược lại, so sánh khoảng cách giữa i và L[i] với khoảng cách giữa R[i] và i. In ra vị trí gần nhất của phần tử a[i] (entangled) bằng cách in L[i] nếu i - L[i] <= R[i] - i và R[i]Thuật toán trong đoạn mã trên được sử dụng để tìm vị trí gần nhất của các phần tử trong một mảng. Dưới đây là mô tả chi tiết của thuật toán:
+
+Đọc một số nguyên từ input và gán cho biến n, đại diện cho độ dài của mảng.
+
+Đọc một dãy số nguyên từ input và gán cho mảng a.
+
+Khởi tạo một mảng L có độ dài n và tất cả các phần tử ban đầu bằng 0.
+
+Khởi tạo một hàng đợi LifoQueue (hàng đợi ngăn xếp) SL. Đặt một cặp giá trị (-1, 2e9) vào hàng đợi để đại diện cho một phần tử không tồn tại với giá trị vô cùng lớn.
+
+Lặp qua mảng a và thực hiện các bước sau:
+a. Trong khi giá trị của phần tử cuối cùng trong hàng đợi SL nhỏ hơn hoặc bằng giá trị của phần tử hiện tại a[i], lấy phần tử cuối cùng ra khỏi hàng đợi. Điều này đảm bảo rằng các phần tử trong hàng đợi SL được giữ theo thứ tự giảm dần của giá trị.
+b. Gán giá trị SL.queue[-1][0] cho L[i]. Đây là vị trí gần nhất của phần tử a[i] bên trái.
+c. Đặt cặp giá trị (i, a[i]) vào hàng đợi SL.
+
+Khởi tạo một mảng R có độ dài n và tất cả các phần tử ban đầu bằng 0.
+
+Khởi tạo một hàng đợi LifoQueue SR. Đặt một cặp giá trị (-1, 2e9) vào hàng đợi.
+
+Lặp qua mảng a từ phải sang trái và thực hiện các bước sau:
+a. Trong khi giá trị của phần tử cuối cùng trong hàng đợi SR nhỏ hơn hoặc bằng giá trị của phần tử hiện tại a[i], lấy phần tử cuối cùng ra khỏi hàng đợi. Điều này đảm bảo rằng các phần tử trong hàng đợi SR được giữ theo thứ tự giảm dần của giá trị.
+b. Gán giá trị SR.queue[-1][0] cho R[i]. Đây là vị trí gần nhất của phần tử a[i] bên phải.
+c. Đặt cặp giá trị (i, a[i]) vào hàng đợi SR.
+
+Lặp qua mảng L và R và thực hiện các bước sau:
+a. Nếu L[i] hoặc R[i] bằng -1, có nghĩa là không tồn tại vị trí gần nhất của phần tử a[i] ở cả hai bên. In ra 1 + L[i] + R[i] để đại diện cho vị trí không tồn tại.
+b. Ngược lại, so sánh khoảng cách giữa i và L[i] với khoảng cách giữa R[i] và i. In ra vị trí gần nhất của phần tử a[i] (entangled) bằng cách in L[i] nếu i - L[i] <= R[i] - i và `R[i]
