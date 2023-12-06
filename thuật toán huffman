@@ -1,0 +1,46 @@
+import collections
+import queue
+PQ = queue.PriorityQueue()
+res = 0
+for x in collections.Counter(input()).values(): PQ.put(x)
+while(PQ.qsize() > 1):
+    tmp = PQ.get() + PQ.get()
+    res += tmp
+    PQ.put(tmp)
+print(res)
+
+Dưới đây là mô tả chi tiết của thuật toán:
+
+Import các module collections và queue.
+
+Tạo một đối tượng PriorityQueue với tên là PQ.
+
+Khởi tạo một biến res bằng 0 để lưu tổng của các số.
+
+Đối với mỗi giá trị của x trong tần số của các ký tự trong chuỗi nhập từ input, đặt x vào hàng đợi ưu tiên PQ.
+
+Lặp lại cho đến khi PQ.qsize() (số lượng phần tử trong hàng đợi ưu tiên) lớn hơn 1, thực hiện các bước sau:
+a. Lấy hai phần tử nhỏ nhất từ hàng đợi ưu tiên bằng cách sử dụng PQ.get() và gán vào biến tmp.
+b. Cộng tmp vào res.
+c. Đặt tmp vào hàng đợi ưu tiên PQ.
+
+In ra giá trị của res, đại diện cho tổng của các số.
+
+Thuật toán này xử lý chuỗi đầu vào bằng cách đếm tần số của các ký tự trong chuỗi và lưu trữ chúng trong một hàng đợi ưu tiên.
+Sau đó, nó lặp lại việc lấy các phần tử nhỏ nhất từ hàng đợi ưu tiên, tính tổng của chúng và đặt lại vào hàng đợi ưu tiên cho đến khi chỉ còn một phần tử duy nhất. 
+Cuối cùng, nó in ra tổng của các số.
+
+Ví dụ:
+Input:
+
+Copier
+aabbbcccc
+Output:
+
+Copier
+17
+Trong ví dụ này, chuỗi đầu vào "aabbbcccc" có các ký tự 'a', 'b', và 'c' với tần số lần lượt là 2, 3, và 4. 
+Sau khi xử lý đầu vào, hàng đợi ưu tiên sẽ chứa các giá trị 2, 3, và 4. 
+Tiếp theo, thuật toán lấy hai phần tử nhỏ nhất từ hàng đợi ưu tiên, là 2 và 3, cộng chúng lại thành 5 và đặt lại vào hàng đợi ưu tiên. 
+Hàng đợi ưu tiên sau bước này sẽ chứa các giá trị 4 và 5. Sau đó, thuật toán lấy 4 và 5, cộng chúng thành 9 và đặt lại vào hàng đợi ưu tiên. 
+Cuối cùng, hàng đợi ưu tiên chỉ còn một phần tử duy nhất là 9, và kết quả là 17.
