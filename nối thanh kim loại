@@ -1,0 +1,64 @@
+import queue
+
+res = 0
+Q = queue.PriorityQueue()
+n = int(input())
+a = list(map(int, input().split()))
+for i in range(n): Q.put(a[i])
+while(Q.qsize() > 1):
+    tmp = Q.get() + Q.get()
+    Q.put(tmp)
+    res += tmp
+print(res)
+
+
+Đoạn mã trên triển khai một thuật toán để tính tổng các phần tử trong một mảng a bằng cách lấy hai phần tử nhỏ nhất, cộng chúng lại và thêm vào hàng đợi, tiếp tục quá trình này cho đến khi hàng đợi chỉ còn một phần tử. Dưới đây là mô tả chi tiết của thuật toán:
+
+Khởi tạo biến res để lưu tổng các phần tử.
+Khởi tạo một hàng đợi ưu tiên (PriorityQueue) Q.
+Đọc số nguyên n từ input, đại diện cho số lượng phần tử trong mảng a.
+Đọc n số nguyên từ input và lưu chúng vào mảng a.
+Với mỗi phần tử x trong mảng a, đặt x vào hàng đợi ưu tiên Q.
+Lặp cho đến khi hàng đợi Q chỉ còn một phần tử:
+Lấy hai phần tử nhỏ nhất từ hàng đợi Q bằng cách sử dụng Q.get().
+Cộng hai phần tử đã lấy được và gán vào biến tmp.
+Đặt tmp vào hàng đợi Q bằng cách sử dụng Q.put(tmp).
+Cộng tmp vào biến res.
+In ra giá trị của res, tổng các phần tử trong mảng a.
+Ví dụ:
+
+Input:
+
+basic
+Copier
+5
+1 3 5 7 9
+Output:
+
+Copier
+45
+Trong ví dụ này, có 5 phần tử trong mảng a: 1, 3, 5, 7, 9. Khi áp dụng thuật toán trên, ta có:
+
+Đặt 1, 3, 5, 7, 9 vào hàng đợi Q theo thứ tự tăng dần: 1, 3, 5, 7, 9.
+Lần lặp đầu tiên:
+Lấy hai phần tử nhỏ nhất từ Q: 1 và 3.
+Cộng chúng lại: 1 + 3 = 4.
+Đặt 4 vào Q: 4, 5, 7, 9.
+Cộng 4 vào res, res = 4.
+Lần lặp thứ hai:
+Lấy hai phần tử nhỏ nhất từ Q: 4 và 5.
+Cộng chúng lại: 4 + 5 = 9.
+Đặt 9 vào Q: 7, 9, 9.
+Cộng 9 vào res, res = 13.
+Lần lặp thứ ba:
+Lấy hai phần tử nhỏ nhất từ Q: 7 và 9.
+Cộng chúng lại: 7 + 9 = 16.
+Đặt 16 vào Q: 9, 16.
+Cộng 16 vào res, res = 29.
+Lần lặp cuối cùng:
+Lấy hai phần tử nhỏ nhất từ Q: 9 và 16.
+Cộng chúng lại: 9 + 16 = 25.
+Đặt 25 vào Q: 25.
+Cộng 25 vào res, res = 54.
+Hàng đợi Q chỉ còn một phần tử là 25.
+In ra giá trị của res, tổng các phần tử trong mảng a, res = 54.
