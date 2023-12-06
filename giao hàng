@@ -1,0 +1,65 @@
+from queue import PriorityQueue
+A =[[] for i in range(1005)]
+n = int(input())
+for i in range(n):
+    t, v = map(int, input().split())
+    A[t].append(v)
+Q = PriorityQueue()
+res = 0
+for i in range(1000,0,-1):
+    for x in A[i]: Q.put(-x)
+    if Q.qsize():
+        res+=Q.get()
+print(-res)
+
+
+
+Đoạn mã bạn cung cấp thực hiện một thuật toán để xử lý danh sách các phần tử và tính tổng âm của các phần tử lớn nhất từ mỗi danh sách con. Dưới đây là mô tả chi tiết của thuật toán:
+
+Import lớp PriorityQueue từ module queue.
+
+Tạo một danh sách gồm các danh sách con rỗng A với chiều dài 1005.
+
+Đọc một số nguyên n từ input.
+
+Lặp n lần và thực hiện các bước sau:
+a. Đọc hai số nguyên t và v từ input.
+b. Thêm v vào danh sách con tại chỉ số t trong danh sách A.
+
+Tạo một đối tượng PriorityQueue với tên là Q.
+
+Khởi tạo một biến res bằng 0 để lưu tổng của các phần tử lớn nhất.
+
+Lặp từ 1000 đến 1 theo thứ tự giảm dần.
+
+Đối với mỗi chỉ số i, lặp qua mỗi phần tử x trong danh sách con A[i] và đặt -x vào hàng đợi ưu tiên Q. Việc đảo dấu dùng để làm cho hàng đợi ưu tiên hoạt động như một max heap.
+
+Kiểm tra nếu Q có chứa các phần tử (Q.qsize()). Nếu có, loại bỏ phần tử lớn nhất từ Q và cộng nó vào res (đảo dấu).
+
+In ra giá trị đảo dấu của res, đại diện cho tổng âm của các phần tử lớn nhất.
+
+Thuật toán này xử lý các phần tử đầu vào bằng cách lưu trữ chúng vào các danh sách con dựa trên giá trị đầu tiên của chúng. 
+Sau đó, nó lặp qua các danh sách con theo thứ tự giảm dần và xây dựng một hàng đợi ưu tiên với các giá trị âm của các phần tử.
+Điều này cho phép thuật toán hiệu quả truy xuất các phần tử lớn nhất.
+Cuối cùng, nó tính tổng âm của các phần tử lớn nhất và in ra kết quả.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+5
+1 5
+2 3
+1 2
+3 8
+2 4
+Output:
+
+Copier
+12
+Trong ví dụ này, thuật toán xử lý đầu vào và xây dựng các danh sách con như sau:
+
+json
+Copier
+A = [[], [5, 2], [4, 3], [8], [], [], ..., []]
