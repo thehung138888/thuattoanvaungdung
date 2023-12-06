@@ -1,0 +1,43 @@
+import collections
+ans, arr1, arr2 = 0, [], []
+for i in range(int(input())):
+    x, y = map(int, input().split())
+    arr1.append(x - y)
+    arr2.append(x + y)
+for x in collections.Counter(arr1).values(): ans += x * (x - 1) // 2
+for x in collections.Counter(arr2).values(): ans += x * (x - 1) // 2
+print(ans)
+
+
+Đoạn mã trên triển khai một thuật toán để đếm số lượng cặp điểm trong một tập hợp các điểm trên mặt phẳng sao cho khoảng cách Euclid giữa các cặp điểm là giống nhau. Dưới đây là mô tả chi tiết của thuật toán:
+
+Khởi tạo biến ans bằng 0 để lưu trữ số lượng cặp điểm thỏa mãn yêu cầu. Khởi tạo hai mảng arr1 và arr2 để lưu trữ hai thành phần tạo nên khoảng cách Euclid của các cặp điểm.
+
+Đọc một số nguyên từ input đại diện cho số lượng điểm.
+
+Lặp qua số lượng điểm và thực hiện các bước sau:
+a. Đọc cặp giá trị x và y từ input, tương ứng với tọa độ của một điểm trên mặt phẳng.
+b. Tính giá trị x - y và thêm vào mảng arr1, đại diện cho thành phần thứ nhất của khoảng cách Euclid.
+c. Tính giá trị x + y và thêm vào mảng arr2, đại diện cho thành phần thứ hai của khoảng cách Euclid.
+
+Sử dụng collections.Counter để đếm số lần xuất hiện của từng phần tử trong mảng arr1 và arr2. Với mỗi giá trị x trong từ điển trả về, tính x * (x - 1) // 2 và cộng vào ans. Bước này đếm số cặp điểm có cùng khoảng cách Euclid.
+
+In ra giá trị của ans, đó chính là số lượng cặp điểm thỏa mãn yêu cầu.
+
+Thuật toán này tính toán thành phần tạo nên khoảng cách Euclid của các cặp điểm và sử dụng collections.Counter để đếm số lần xuất hiện của từng phần tử trong mảng. Sau đó, tìm số lượng cặp điểm có cùng khoảng cách Euclid bằng cách tính x * (x - 1) // 2 với x là số lần xuất hiện của mỗi phần tử. Cuối cùng, in ra giá trị ans là đáp án của bài toán.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+4
+1 1
+2 2
+3 1
+4 3
+Output:
+
+Copier
+3
+Trong ví dụ này, có 4 điểm trên mặt phẳng với tọa độ (1, 1), (2, 2), (3, 1), (4, 3). Có 3 cặp điểm có cùng khoảng cách Euclid, đó là (1, 1) và (3, 1), (2, 2) và (4, 3), (1, 1) và (2, 2).
