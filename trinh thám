@@ -1,0 +1,47 @@
+mport queue
+
+Q = queue.PriorityQueue()
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+for i in range(n):
+Q.put([-a[i], i])
+if (i >= k-1):
+while(i - Q.queue[0][1] >= k):
+Q.get()
+print(-Q.queue[0][0], end=" ")
+
+Đoạn mã trên triển khai một thuật toán để tìm phần tử lớn nhất trong mỗi cửa sổ con có k phần tử liên tiếp trong một dãy số. Dưới đây là mô tả chi tiết của thuật toán:
+
+Import module queue để sử dụng lớp PriorityQueue.
+
+Khởi tạo một hàng đợi ưu tiên Q.
+
+Đọc hai số nguyên n và k từ input. n là số lượng phần tử trong dãy số và k là kích thước của cửa sổ con.
+
+Đọc một dãy số nguyên a từ input.
+
+Lặp qua các số trong dãy a sử dụng chỉ số i.
+
+Thêm cặp giá trị [-a[i], i] vào hàng đợi ưu tiên Q. Giá trị âm của a[i] được sử dụng để đảm bảo phần tử lớn nhất sẽ được truy xuất đầu tiên từ hàng đợi.
+
+Kiểm tra nếu i lớn hơn hoặc bằng k-1. Điều này đảm bảo cửa sổ con có đủ k phần tử.
+
+Trong khi i - Q.queue[0][1] (chỉ số hiện tại trừ chỉ số của phần tử đầu tiên trong hàng đợi) lớn hơn hoặc bằng k, loại bỏ phần tử đầu tiên khỏi hàng đợi. Điều này đảm bảo rằng phần tử đầu tiên trong hàng đợi luôn là phần tử lớn nhất trong cửa sổ con.
+
+In ra giá trị âm của phần tử đầu tiên trong hàng đợi Q (-Q.queue[0][0]) và thêm một khoảng trắng vào cuối.
+
+Thuật toán này duy trì một hàng đợi ưu tiên để lưu trữ các phần tử trong cửa sổ con và luôn đảm bảo phần tử lớn nhất được truy xuất đầu tiên từ hàng đợi. Bằng cách loại bỏ các phần tử đã qua cửa sổ con khỏi hàng đợi, thuật toán đảm bảo rằng chỉ có k phần tử trong hàng đợi tại mỗi thời điểm.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+8 3
+4 2 6 1 5 3 8 7
+Output:
+
+basic
+Copier
+6 6 6 5 5 8
+Trong ví dụ này, thuật toán xử lý dãy số a và tìm phần tử lớn nhất trong từng cửa sổ con có k = 3 phần tử. Các phần tử lớn nhất trong các cửa sổ con lần lượt là 6, 6, 6, 5, 5 và 8.
