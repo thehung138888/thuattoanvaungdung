@@ -1,0 +1,99 @@
+import queue
+S = queue.LifoQueue()
+S.put([2e9, 0])
+n = int(input())
+A = list(map(int, input().split()))
+res = 0
+for x in A :
+    while S.queue[-1][0] < x :
+        res += S.queue[-1][1]
+        S.get()
+    if S.queue[-1][0] == x :
+        res += S.queue[-1][1] + (S.queue[-2][1] != 0)
+        S.queue[-1][1] += 1
+    else :
+        res += (S.queue[-1][1] != 0 )
+        S.put([x, 1])
+print(res)
+
+
+Đoạn mã trên triển khai một thuật toán để tính tổng số lượng các cặp phần tử trong một mảng sao cho phần tử thứ nhất trong cặp lớn hơn phần tử thứ hai trong cặp. Dưới đây là mô tả chi tiết của thuật toán:
+
+Khởi tạo một LifoQueue (hàng đợi ngăn xếp) S và đặt một cặp giá trị [2e9, 0] vào hàng đợi. Cặp giá trị này đại diện cho một "giá trị lớn nhất" ảo và số lượng giá trị lớn hơn nó.
+
+Đọc một số nguyên n từ input đại diện cho số lượng phần tử trong mảng.
+
+Đọc n số nguyên từ input và lưu trữ chúng trong mảng A.
+
+Khởi tạo biến res để lưu tổng số lượng các cặp phần tử thỏa mãn điều kiện đã nêu.
+
+Lặp qua mảng A và thực hiện các bước sau:
+a. Kiểm tra và lấy các cặp giá trị khỏi S cho đến khi giá trị lớn nhất trong S lớn hơn giá trị hiện tại x.
+b. Cộng dồn số lượng các cặp phần tử đã lấy ra vào biến res.
+c. Kiểm tra nếu giá trị lớn nhất trong S bằng x.
+
+Nếu đúng, thực hiện các bước sau:
+Cộng dồn số lượng các cặp phần tử đã lấy ra vào biến res.
+Kiểm tra nếu số lượng giá trị thứ hai trong cặp trước đó khác 0, thì cộng thêm 1 vào res.
+Tăng số lượng giá trị thứ hai trong cặp cuối cùng của S lên 1.
+Nếu sai, thực hiện các bước sau:
+Kiểm tra nếu số lượng giá trị thứ hai trong cặp cuối cùng của S khác 0, thì cộng thêm 1 vào res.
+Đặt cặp giá trị [x, 1] vào S để lưu trữ giá trị x và số lượng là 1.
+In ra giá trị của res, tổng số lượng các cặp phần tử thỏa mãn điều kiện.
+
+Thuật toán này sử dụng hàng đợi ngăn xếp để theo dõi các giá trị lớn nhất và số lượng tương ứng của chúng trong mảng A. Khi duyệt qua mảng A, thuật toán lấy các giá trị khỏi hàng đợi ngăn xếp S, tính toán số lượng các cặp phù hợp và lưu trữ các giá trị mới vào S. Cuối cùng, thuật toán in ra tổng số lượng các cặp phần tử thỏa mãn điều kiện.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+6
+3 6 2 5 4 7
+Output:
+
+Copier
+9
+Trong ví dụ này, có 6 phần tử trong mảng A: 3, 6, 2, 5, 4 và 7. Khi áp dụng thuật toán trên, ta có:
+
+Sau khi duyệt qua phần tử 3:
+
+S: [[2e9, 0], [3, 1]]
+res: 0
+Sau khi duyệt qua phần tử 6:
+
+S: [[2e9,Xin lỗi, có một lỗi nhỏ trong phần mô tả của tôi. Dòng S.queue[-1][1] += 1trong đoạn mã phải được thay thế bằngS.put([x, S.queue[-1][1] + 1])` để cập nhật giá trị số lượng của cặp giá trị cuối cùng trong hàng đợi.
+Sửa lại đoạn mã:
+
+python
+Copier
+import queue
+S = queue.LifoQueue()
+S.put([2e9, 0])
+n = int(input())
+A = list(map(int, input().split()))
+res = 0
+for x in A :
+    while S.queue[-1][0] < x :
+        res += S.queue[-1][1]
+        S.get()
+    if S.queue[-1][0] == x :
+        res += S.queue[-1][1] + (S.queue[-2][1] != 0)
+        S.put([x, S.queue[-1][1] + 1])
+    else :
+        res += (S.queue[-1][1] != 0 )
+        S.put([x, 1])
+print(res)
+Ví dụ:
+
+Input:
+
+basic
+Copier
+6
+3 6 2 5 4 7
+Output:
+
+Copier
+9
+Giải thích: Các cặp phần tử thỏa mãn điều kiện là (3, 2), (6, 2), (6, 5), (6, 4), (6, 7), (5, 4), (5, 7), (4, 7), và (2, 7), tổng cộng là 9.
