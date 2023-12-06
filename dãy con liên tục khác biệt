@@ -1,0 +1,43 @@
+pos = {}
+res = 1
+st = 0
+n = int(input())
+a = list(map(int, input().split()))
+for i in range(n):
+    if a[i] in pos and pos[a[i]] >= st:
+        st = pos[a[i]] + 1
+    res = max(res, i - st + 1)
+    pos[a[i]] = i
+print(res)
+
+
+  Dưới đây là mô tả chi tiết của thuật toán:
+
+Khởi tạo một từ điển pos để lưu trữ vị trí xuất hiện cuối cùng của mỗi phần tử trong mảng số nguyên. Khởi tạo biến res bằng 1 để lưu trữ chiều dài của đoạn con không trùng lặp dài nhất. Khởi tạo biến st bằng 0 để đánh dấu vị trí bắt đầu của đoạn con hiện tại.
+
+Đọc số nguyên n từ input, đại diện cho số phần tử trong mảng số nguyên.
+
+Đọc n số nguyên từ input và lưu chúng vào mảng a.
+
+Lặp qua từng phần tử a[i] trong mảng a và thực hiện các bước sau:
+a. Kiểm tra nếu a[i] đã xuất hiện trong pos và vị trí xuất hiện cuối cùng của a[i] (pos[a[i]]) không nhỏ hơn st. Điều này có nghĩa là a[i] đã xuất hiện trong đoạn con hiện tại.
+b. Nếu đúng, cập nhật st bằng vị trí xuất hiện cuối cùng của a[i] + 1 để chắc chắn rằng không có phần tử a[i] nào trong đoạn con hiện tại.
+c. Cập nhật biến res bằng giá trị lớn nhất giữa res và chiều dài của đoạn con hiện tại (i - st + 1).
+d. Cập nhật vị trí xuất hiện cuối cùng của a[i] trong pos thành i.
+
+In ra giá trị của res, đó chính là chiều dài của đoạn con không trùng lặp dài nhất trong mảng.
+
+Thuật toán này duyệt qua từng phần tử trong mảng số nguyên và sử dụng từ điển pos để theo dõi vị trí xuất hiện cuối cùng của mỗi phần tử. Khi gặp một phần tử đã xuất hiện trong đoạn con hiện tại, cập nhật vị trí bắt đầu của đoạn con (st) để loại bỏ các phần tử trùng lặp. Sau đó, cập nhật giá trị res nếu đoạn con hiện tại dài hơn giá trị hiện tại của res. Cuối cùng, in ra giá trị của res là đáp án của bài toán.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+6
+1 2 3 2 1 4
+Output:
+
+Copier
+4
+Trong ví dụ này, mảng số nguyên ban đầu là [1, 2, 3, 2, 1, 4]. Các phần tử trong mảng được đánh số từ 0 đến 5. Chiều dài của đoạn con không trùng lặp dài nhất là 4 và tương ứng với đoạn con [2, 1, 4].
