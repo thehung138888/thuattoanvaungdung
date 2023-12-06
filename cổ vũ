@@ -1,0 +1,41 @@
+# Ý tưởng: đưa chuỗi và dạng dãy số, kí tự X ~ +1, kí tu D ~ -1
+# => bài toán quy về tìm dãy con liên tiếp dài nhất mà có tổng = 0
+mp = {0: 0}
+res = 0
+sum = 0
+for i, c in enumerate(input(), 1):
+    if c == 'X': sum += 1
+    else: sum -= 1
+    if sum not in mp:
+        mp[sum] = i
+    else:
+        res = max(res, i - mp[sum])
+print(res)
+
+
+Đoạn mã trên triển khai một thuật toán để tìm độ dài của đoạn con liên tiếp có số lượng ký tự 'X' bằng số lượng ký tự '.' dài nhất trong một chuỗi. Dưới đây là mô tả chi tiết của thuật toán:
+
+Khởi tạo một từ điển mp với một cặp khóa-giá trị ban đầu là (0, 0). Biến res được khởi tạo bằng 0 để lưu trữ độ dài của đoạn con liên tiếp dài nhất. Biến sum được khởi tạo bằng 0 để tính tổng số lượng ký tự 'X' và '.'.
+
+Đọc chuỗi đầu vào từ input và duyệt qua từng ký tự c trong chuỗi đó cùng với chỉ số i tương ứng.
+
+Kiểm tra nếu c là ký tự 'X', tăng giá trị của sum lên 1. Ngược lại, giảm giá trị của sum đi 1.
+
+Kiểm tra nếu sum không có trong từ điển mp. Nếu đúng, thêm một cặp khóa-giá trị mới là (sum, i) vào mp.
+
+Ngược lại, nếu sum đã có trong mp, cập nhật res bằng giá trị lớn nhất giữa res và i - mp[sum]. Điều này là vì nếu sum đã xuất hiện trước đó, tức là có một đoạn con có số lượng ký tự 'X' bằng số lượng ký tự '.', và khoảng cách giữa hai lần xuất hiện của sum là i - mp[sum]. Chúng ta cần tìm độ dài lớn nhất của đoạn con này.
+
+Cuối cùng, in ra giá trị của res, đó chính là độ dài của đoạn con liên tiếp có số lượng ký tự 'X' bằng số lượng ký tự '.' dài nhất trong chuỗi.
+
+Thuật toán này duyệt qua từng ký tự trong chuỗi và sử dụng từ điển mp để theo dõi tổng số lượng ký tự 'X' và '.' tại mỗi vị trí. Khi gặp một tổng sum chưa từng xuất hiện trước đó, chúng ta lưu lại vị trí i của nó trong mp. Nếu sum đã xuất hiện trước đó, chúng ta cập nhật giá trị res nếu đoạn con hiện tại dài hơn giá trị hiện tại của res. Cuối cùng, in ra giá trị của res là đáp án của bài toán.
+
+Ví dụ:
+Input:
+
+Copier
+X.XXXX.XX..X
+Output:
+
+Copier
+8
+Trong ví dụ này, chuỗi đầu vào là 'X.XXXX.XX..X'. Đoạn con liên tiếp dài nhất có số lượng ký tự 'X' bằng số lượng ký tự '.' là 'X.XXXX.XX' với độ dài là 8.
