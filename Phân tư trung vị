@@ -1,0 +1,48 @@
+import queue
+
+L, R = queue.PriorityQueue(), queue.PriorityQueue()
+n = int(input())
+a = list(map(int, input().split()))
+for i in range(n):
+    if(i%2==0): L.put(-a[i])
+    else: R.put(a[i])
+    if R.qsize()>0 and -L.queue[0] > R.queue[0]:
+        L.put(-R.get())
+        R.put(-L.get())
+    print(-L.queue[0], end=" ")
+/*Đoạn code trên triển khai một thuật toán sắp xếp dãy số theo thứ tự không giảm sử dụng hai hàng đợi ưu tiên (PriorityQueue).
+
+Thuật toán hoạt động như sau:
+
+Import module queue để sử dụng lớp PriorityQueue.
+
+Khởi tạo hai hàng đợi ưu tiên L và R.
+
+Đọc một số nguyên n từ input.
+
+Đọc một dãy số nguyên a từ input.
+
+Lặp qua các số trong a sử dụng chỉ số i.
+
+Nếu i là số chẵn (i % 2 == 0), thêm -a[i] vào hàng đợi L. Ngược lại, thêm a[i] vào hàng đợi R.
+
+Kiểm tra nếu hàng đợi R có phần tử (R.qsize() > 0) và phần tử nhỏ nhất trong hàng đợi L (-L.queue[0]) lớn hơn phần tử nhỏ nhất trong hàng đợi R (R.queue[0]).
+
+Nếu điều kiện ở bước 7 là đúng, hoán đổi phần tử nhỏ nhất giữa hai hàng đợi L và R. Điều này được thực hiện bằng cách loại bỏ phần tử nhỏ nhất từ mỗi hàng đợi và thêm chúng vào hàng đợi đối diện với việc đảo dấu phù hợp.
+
+In ra số âm của phần tử nhỏ nhất trong hàng đợi L (-L.queue[0]) và thêm một khoảng trắng vào cuối.
+
+Thuật toán này duy trì hai hàng đợi ưu tiên, một cho các phần tử ở chỉ số chẵn và một cho các phần tử ở chỉ số lẻ. Nó đảm bảo rằng phần tử nhỏ nhất trong hàng đợi L luôn lớn hơn hoặc bằng phần tử nhỏ nhất trong hàng đợi R.
+
+Ví dụ:
+Input:
+
+basic
+Copier
+6
+4 2 6 1 5 3
+Output:
+
+Copier
+-4 -2 -4 -2 -4 -3
+Trong ví dụ này, thuật toán xử lý các số trong dãy a một cách tuần tự và duy trì các hàng đợi ưu tiên L và R. Kết quả in ra là số âm của phần tử nhỏ nhất trong hàng đợi L sau khi xử lý từng số*/
